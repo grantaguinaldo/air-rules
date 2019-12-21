@@ -5,13 +5,9 @@ import requests as r
 import os
 
 api_key_ = os.environ.get('api-key', None)
-media_url = os.environ.get('media_url_', None)
-endpoint = os.environ.get('endpoint_', None)
 
 headers = {'Content-Type': 'application/json',
            'api-key': api_key_}
-
-media_url = media_url
 
 app = Flask(__name__)
 
@@ -37,7 +33,7 @@ def incoming_sms():
     elif 'for' in body_text:
 
         def connection_string(x, top):
-            endpoint = endpoint
+            endpoint = 'https://airrules-search.search.windows.net/indexes'
             api_version = 'docs?api-version=2019-05-06'
             index = '/demoindex/'
             search_term = "&search=" + '%20'.join(x.split(' ')) + '&$top=' + str(top)
